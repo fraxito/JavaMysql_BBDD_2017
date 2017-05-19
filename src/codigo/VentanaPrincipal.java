@@ -27,7 +27,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     String [][] arrayResultado; 
     
     //declaramos un arraylist para guardar el resultado de la consulta
-    ArrayList <String> lista = new ArrayList();
+    ArrayList <String[]> lista = new ArrayList();
     
     
     
@@ -44,7 +44,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             resultado = estado.executeQuery("SELECT * FROM liga.equipos");
 
             while (resultado.next()){
-                lista.add(resultado.getString("nombre"));
+                String [] aux = new String[3];
+                aux[0] = resultado.getString("nombre");
+                aux[1] = resultado.getString("web");
+                aux[2] = resultado.getString("ciudad");
+                lista.add(aux);
             }
             
 //            resultado.last();
@@ -150,7 +154,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void jButton1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MousePressed
         for (int i=0; i<lista.size(); i++){
             //jTextArea1.append(arrayResultado[i][1] + " \n");
-            jTextArea1.append(lista.get(i) + " \n");
+            jTextArea1.append(lista.get(i)[0] + " " + lista.get(i)[1] +" \n");
         }
     }//GEN-LAST:event_jButton1MousePressed
 
